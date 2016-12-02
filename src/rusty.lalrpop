@@ -307,6 +307,9 @@ impl_type: () = {
 ItemFn: () = {
   "fn" Ident GenericParams fn_decl MaybeWhereClause InnerAttrs_and_block,
 };
+ItemLabel: () = {
+  "label" Ident fn_params block,
+};
 ItemUnsafeFn: () = {
   "unsafe" "fn" Ident GenericParams fn_decl MaybeWhereClause InnerAttrs_and_block,
   "unsafe" "extern" Abi "fn" Ident GenericParams fn_decl MaybeWhereClause InnerAttrs_and_block,
@@ -657,6 +660,7 @@ block: () = {
 Maybestmts: () = {
   stmts,
   stmts ExprNoStmtLike,
+  stmts ItemLabel+,
   ExprNoStmtLike,
   (),
 };
